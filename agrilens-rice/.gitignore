@@ -1,0 +1,12 @@
+# secrets and local files
+.streamlit/secrets.toml
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# evaluation material and output
+test_images/*/
+results.csv
