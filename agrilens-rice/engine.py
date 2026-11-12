@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).parent
 CARDS_DIR = BASE_DIR / "cards"
 
 # Check which models your free key can use (run check_setup.py) and change if needed.
-DEFAULT_MODEL = "gemini-2.5-flash"
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
 LANGUAGES = ["English", "Sinhala", "Tamil"]
 
@@ -55,7 +55,9 @@ def read_setting(name, default=None):
     secrets_file = BASE_DIR / ".streamlit" / "secrets.toml"
     if secrets_file.exists():
         text = secrets_file.read_text(encoding="utf-8")
-        match = re.search(rf'{name}\s*=\s*["\']([^"\']+)["\']', text)
+        match = re.search(
+            rf'^\s*{name}\s*=\s*["\']([^"\']+)["\']', text, flags=re.MULTILINE
+        )
         if match:
             return match.group(1).strip()
     return default
